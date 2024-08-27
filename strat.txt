@@ -1,0 +1,21 @@
+1. Crawl Website, get link of every file from fileLibrary on page
+    a. Get list of all pages on IREM 
+    b. Make a request to each page, look for all files/links on the website. If it exists-
+        All we need is the URL/Relative URL - grab this and save it to a list
+
+===============
+
+2. Get all files in library
+https://www.irem.org/admin/api/assetfile?skipPaging=true
+
+3. Create dictionary
+    a. Iterate through every file, merge via relative URLs if it exists on live site
+    b. Take the difference set, files in all files and not in live site
+    b. Set relative file url as key
+    c. ID of file as value
+
+===============
+
+Finally - 
+    4. Iterate through each file in the difference mentioned in (3)
+    5. For each file in filesToDelete, use the URL as the key to get the value and make a delete request to /api/assetfile/{value}
